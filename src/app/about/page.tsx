@@ -8,78 +8,90 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section style={{ background: 'var(--primary)', padding: '4rem 0 3rem' }}>
+      <div className="page-hero">
         <div className="container text-center">
-          <h1 style={{ color: '#fff', fontSize: '2.75rem' }}>About Sant Complex</h1>
-          <p style={{ color: 'rgba(255,255,255,0.8)', marginTop: '.75rem' }}>
-            Our story, our mission, our community.
+          <p className="page-hero-eyebrow">Our Story</p>
+          <h1>About Sant Complex</h1>
+          <p style={{ margin: '12px auto 0' }}>
+            A premier commercial destination built to serve the growing needs of Jandiala Manjki.
           </p>
         </div>
-      </section>
+      </div>
 
       <section className="section">
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
             <div>
-              <h2 style={{ fontSize: '2rem', marginBottom: '1.25rem' }}>A Community Built for Business</h2>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '1rem', lineHeight: 1.8 }}>
-                Sant Complex is a premier commercial property located on the busy Goraya Road in Jandiala Manjki.
-                Built to serve the growing commercial needs of the region, it has become a one-stop destination
-                for local shoppers and a thriving home for businesses across various sectors.
+              <p className="section-eyebrow">The Complex</p>
+              <div className="accent-line"></div>
+              <h2 style={{ fontSize: '2rem', marginBottom: '24px', fontFamily: "'Playfair Display', serif" }}>
+                A Community Built for Business Success
+              </h2>
+              <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '17px' }}>
+                Sant Complex is a premier commercial property strategically located on the busy Goraya Road in Jandiala Manjki.
+                Built with modern businesses in mind, it has quickly become a central hub for local commerce and a preferred destination for shoppers and professionals alike.
               </p>
-              <p style={{ color: 'var(--text-muted)', marginBottom: '1rem', lineHeight: 1.8 }}>
-                Our complex spans ground and first floors, housing a diverse range of businesses from retail
-                shops and service providers to professional offices. The variety of businesses creates a
-                natural ecosystem where customers can fulfil multiple needs in a single visit.
+              <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '17px' }}>
+                Spanning ground and first floors, the complex houses a meticulously curated selection of businesses — from retail stores and essential services to professional consulting offices. This diversity creates a natural ecosystem where businesses benefit from shared foot traffic and customers enjoy unparalleled convenience.
               </p>
-              <p style={{ color: 'var(--text-muted)', lineHeight: 1.8 }}>
-                With ample parking, secure premises, reliable power supply, and a prime main-road location,
-                Sant Complex provides everything a business needs to grow and thrive.
+              <p style={{ color: 'var(--text-muted)', fontSize: '17px' }}>
+                With dedicated parking facilities, secure premises, reliable infrastructure, and a prime main-road location, Sant Complex provides the foundational requirements for businesses to establish themselves and thrive in a competitive market.
               </p>
             </div>
             <div>
-              <div style={{ background: 'linear-gradient(135deg, var(--primary), var(--primary-light))', borderRadius: 'var(--radius)', padding: '3rem', color: '#fff' }}>
-                <h3 style={{ color: '#fff', marginBottom: '2rem', fontSize: '1.3rem' }}>Key Facts</h3>
-                {[
-                  { icon: '📍', label: 'Location', value: 'Goraya Road, Jandiala Manjki' },
-                  { icon: '🏢', label: 'Floors', value: 'Ground + First Floor' },
-                  { icon: '🏪', label: 'Business Types', value: 'Retail, Services, Offices' },
-                  { icon: '🚗', label: 'Parking', value: 'Dedicated parking available' },
-                  { icon: '⚡', label: 'Power', value: 'Reliable power supply' },
-                  { icon: '🔒', label: 'Security', value: 'Secure, well-maintained premises' },
-                ].map((item) => (
-                  <div key={item.label} style={{ display: 'flex', gap: '1rem', marginBottom: '1.25rem' }}>
-                    <span style={{ fontSize: '1.25rem' }}>{item.icon}</span>
-                    <div>
-                      <div style={{ fontSize: '.8rem', color: 'rgba(255,255,255,.6)', marginBottom: '.2rem' }}>{item.label}</div>
-                      <div style={{ fontWeight: '600' }}>{item.value}</div>
+              <div style={{ background: 'var(--blue)', borderRadius: 'var(--radius-lg)', padding: '40px', color: '#fff', boxShadow: 'var(--shadow-md)' }}>
+                <h3 style={{ color: '#fff', marginBottom: '32px', fontSize: '20px', borderBottom: '1px solid rgba(255,255,255,.15)', paddingBottom: '16px' }}>
+                  Property Overview
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                  {[
+                    { label: 'Location', value: 'Goraya Road, Jandiala Manjki, Punjab' },
+                    { label: 'Structure', value: 'Ground & First Floor Commercial Layout' },
+                    { label: 'Tenant Mix', value: 'Retail, Personal Services, Professional Offices' },
+                    { label: 'Facilities', value: 'Dedicated parking, secure premises, reliable power' },
+                    { label: 'Access', value: 'Direct main-road frontage with high visibility' },
+                  ].map((item) => (
+                    <div key={item.label}>
+                      <div style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.1em', color: 'var(--gold)', marginBottom: '4px' }}>
+                        {item.label}
+                      </div>
+                      <div style={{ fontSize: '15px', fontWeight: 500, lineHeight: 1.5 }}>
+                        {item.value}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div style={{ marginTop: '5rem' }}>
-            <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem', textAlign: 'center' }}>Types of Businesses Hosted</h2>
-            <div className="card-grid">
-              {[
-                { icon: '🛍️', name: 'Retail Shops' },
-                { icon: '💇', name: 'Personal Services' },
-                { icon: '🍽️', name: 'Food & Beverages' },
-                { icon: '💊', name: 'Healthcare' },
-                { icon: '📱', name: 'Electronics & Tech' },
-                { icon: '🏦', name: 'Financial Services' },
-                { icon: '👔', name: 'Professional Offices' },
-                { icon: '📚', name: 'Education & Training' },
-                { icon: '🔧', name: 'Repair & Maintenance' },
-              ].map((type) => (
-                <div key={type.name} style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-sm)', padding: '1.25rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <span style={{ fontSize: '1.75rem' }}>{type.icon}</span>
-                  <span style={{ fontWeight: '600', color: 'var(--primary)' }}>{type.name}</span>
-                </div>
-              ))}
-            </div>
+      <section className="section" style={{ background: 'var(--surface)', borderTop: '1px solid var(--border)' }}>
+        <div className="container">
+          <div className="section-header center">
+            <p className="section-eyebrow">Sectors</p>
+            <div className="accent-line" style={{ margin: '0 auto 20px' }}></div>
+            <h2>Businesses We Host</h2>
+            <p>Sant Complex accommodates a wide variety of commercial operations, creating a diverse and thriving marketplace.</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '16px' }}>
+            {[
+              'Retail & Shopping',
+              'Personal Care & Salons',
+              'Food & Beverages',
+              'Healthcare & Pharmacies',
+              'Electronics & Technology',
+              'Financial Services',
+              'Professional Consulting',
+              'Education & Training',
+              'Repair & Maintenance',
+            ].map((type) => (
+              <div key={type} style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '24px', textAlign: 'center' }}>
+                <div style={{ width: '12px', height: '12px', background: 'var(--red)', borderRadius: '50%', margin: '0 auto 16px' }}></div>
+                <span style={{ fontWeight: 600, color: 'var(--text)', fontSize: '16px' }}>{type}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

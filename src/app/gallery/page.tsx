@@ -19,37 +19,39 @@ export default async function GalleryPage() {
 
   return (
     <>
-      <section style={{ background: 'var(--primary)', padding: '4rem 0 3rem' }}>
+      <div className="page-hero">
         <div className="container text-center">
-          <h1 style={{ color: '#fff', fontSize: '2.75rem' }}>Gallery</h1>
-          <p style={{ color: 'rgba(255,255,255,0.8)', marginTop: '.75rem' }}>
-            A look inside Sant Complex
+          <p className="page-hero-eyebrow">Visual Tour</p>
+          <h1>Property Gallery</h1>
+          <p style={{ margin: '12px auto 0' }}>
+            Take a visual tour of Sant Complex, our facilities, and the business environment.
           </p>
         </div>
-      </section>
+      </div>
 
-      <section className="section-sm">
+      <section className="section">
         <div className="container">
           {images.length === 0 ? (
-            <div className="empty-state" style={{ padding: '6rem 2rem' }}>
-              <div className="icon">📸</div>
-              <h3>Photos coming soon</h3>
-              <p>Gallery images will be added shortly.</p>
+            <div className="empty-state">
+              <h3>Gallery Updates Pending</h3>
+              <p>We are currently compiling high-quality photographs of the complex. Please check back soon.</p>
             </div>
           ) : (
             <>
-              {/* Show by category */}
               {categories.length > 0 ? categories.map((cat) => {
                 const catImages = images.filter((i) => i.category === cat);
                 return (
-                  <div key={cat} style={{ marginBottom: '3rem' }}>
-                    <h2 style={{ marginBottom: '1.25rem', color: 'var(--primary)' }}>{cat}</h2>
+                  <div key={cat} style={{ marginBottom: '64px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
+                      <h2 style={{ fontFamily: "'Playfair Display', serif", margin: 0 }}>{cat}</h2>
+                      <div style={{ height: '1px', background: 'var(--border)', flex: 1 }}></div>
+                    </div>
                     <div className="gallery-grid">
                       {catImages.map((img) => (
                         <div key={img.id} className="gallery-item">
                           <img src={img.url} alt={img.description || cat} loading="lazy" />
                           {img.description && (
-                            <div className="gallery-item-overlay">{img.description}</div>
+                            <div className="gallery-overlay">{img.description}</div>
                           )}
                         </div>
                       ))}
@@ -62,7 +64,7 @@ export default async function GalleryPage() {
                     <div key={img.id} className="gallery-item">
                       <img src={img.url} alt={img.description || 'Sant Complex'} loading="lazy" />
                       {img.description && (
-                        <div className="gallery-item-overlay">{img.description}</div>
+                        <div className="gallery-overlay">{img.description}</div>
                       )}
                     </div>
                   ))}

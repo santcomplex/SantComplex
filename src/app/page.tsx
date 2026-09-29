@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { db } from '@/lib/db';
 
 async function getStats() {
@@ -20,94 +21,111 @@ export default async function HomePage() {
     <>
       {/* Hero */}
       <section className="hero">
-        <div className="container hero-content">
-          <div className="hero-badge">📍 Goraya Road, Jandiala Manjki</div>
-          <h1>
-            Your Business,<br />
-            <em>Our Community.</em>
-          </h1>
-          <p>
-            Sant Complex is a thriving commercial hub with established businesses,
-            modern facilities, and prime spaces for rent.
-          </p>
-          <div className="hero-cta">
-            <Link href="/businesses" className="btn btn-primary">🏪 View Businesses</Link>
-            <Link href="/spaces" className="btn btn-ghost">🔑 Spaces Available</Link>
+        <div className="container hero-inner">
+          <div>
+            <p className="hero-eyebrow">Goraya Road, Jandiala Manjki</p>
+            <h1>
+              The Heart of<br />
+              <span>Local Commerce</span>
+            </h1>
+            <p>
+              Sant Complex is a well-established commercial hub hosting a
+              diverse community of businesses across retail, services, and
+              professional sectors.
+            </p>
+            <div className="hero-actions">
+              <Link href="/businesses" className="btn btn-primary btn-lg">View Businesses</Link>
+              <Link href="/spaces" className="btn btn-outline-white btn-lg">Spaces Available</Link>
+            </div>
           </div>
-
-          <div className="hero-stats">
-            <div className="stat-item">
-              <div className="stat-value">{stats.businesses}+</div>
-              <div className="stat-label">Active Businesses</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-value">{stats.availableSpaces}</div>
-              <div className="stat-label">Spaces Available</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-value">G+1</div>
-              <div className="stat-label">Floors</div>
-            </div>
-            <div className="stat-item">
-              <div className="stat-value">Prime</div>
-              <div className="stat-label">Location</div>
-            </div>
+          <div className="hero-logo-side">
+            <Image src="/logo.jpg" alt="Sant Complex" width={180} height={180} priority style={{ borderRadius: '12px' }} />
           </div>
         </div>
       </section>
+
+      {/* Stats strip */}
+      <div className="hero-strip">
+        <div className="container">
+          <div className="hero-strip-inner">
+            <div className="strip-stat">
+              <div className="strip-stat-value">{stats.businesses}+</div>
+              <div className="strip-stat-label">Active Businesses</div>
+            </div>
+            <div className="strip-stat">
+              <div className="strip-stat-value">{stats.availableSpaces}</div>
+              <div className="strip-stat-label">Spaces Available</div>
+            </div>
+            <div className="strip-stat">
+              <div className="strip-stat-value">G+1</div>
+              <div className="strip-stat-label">Floors</div>
+            </div>
+            <div className="strip-stat">
+              <div className="strip-stat-value">Prime</div>
+              <div className="strip-stat-label">Main Road Location</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Why Sant Complex */}
       <section className="section">
         <div className="container">
           <div className="section-header">
-            <h2>Why Choose Sant Complex?</h2>
-            <p>We provide a professional environment where your business can grow — backed by a prime location and a thriving community.</p>
+            <p className="section-eyebrow">Why Sant Complex</p>
+            <div className="accent-line"></div>
+            <h2>Built for Business Growth</h2>
+            <p>A professionally managed commercial complex providing everything your business needs to thrive.</p>
           </div>
-          <div className="card-grid">
-            <div className="feature-card">
-              <div className="feature-icon">📍</div>
-              <h3>Prime Location</h3>
-              <p>Situated on the busy Goraya Road in Jandiala Manjki, ensuring excellent visibility and foot traffic for your business.</p>
+          <div className="feature-grid">
+            <div className="feature-item">
+              <p className="feature-item-num">01</p>
+              <div className="feature-accent-bar" style={{ background: 'var(--blue)' }}></div>
+              <h3>Prime Main Road Location</h3>
+              <p>Situated on the busy Goraya Road in Jandiala Manjki, ensuring excellent visibility and consistent foot traffic.</p>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon">🏪</div>
-              <h3>Established Community</h3>
-              <p>Join a network of successful businesses operating under one roof, creating a natural ecosystem for customers.</p>
+            <div className="feature-item">
+              <p className="feature-item-num">02</p>
+              <div className="feature-accent-bar" style={{ background: 'var(--red)' }}></div>
+              <h3>Established Business Community</h3>
+              <p>Join a network of successful businesses under one roof, creating a natural ecosystem that draws customers.</p>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon">🚗</div>
-              <h3>Ample Parking</h3>
-              <p>Dedicated parking spaces for business owners and customers — a crucial advantage in a busy commercial area.</p>
+            <div className="feature-item">
+              <p className="feature-item-num">03</p>
+              <div className="feature-accent-bar" style={{ background: 'var(--gold)' }}></div>
+              <h3>Dedicated Parking</h3>
+              <p>Ample, dedicated parking for business owners and their customers — a critical advantage in a busy commercial area.</p>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon">🔒</div>
+            <div className="feature-item">
+              <p className="feature-item-num">04</p>
+              <div className="feature-accent-bar" style={{ background: 'var(--orange)' }}></div>
               <h3>Secure Premises</h3>
-              <p>Well-maintained, secure environment giving you and your customers peace of mind around the clock.</p>
+              <p>A well-maintained, secure environment giving you and your customers peace of mind at all times.</p>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon">⚡</div>
+            <div className="feature-item">
+              <p className="feature-item-num">05</p>
+              <div className="feature-accent-bar" style={{ background: 'var(--blue)' }}></div>
               <h3>Modern Facilities</h3>
-              <p>Reliable power supply, clean common areas, and well-maintained infrastructure for uninterrupted business operations.</p>
+              <p>Reliable power supply, clean common areas, and well-maintained infrastructure for uninterrupted operations.</p>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon">🤝</div>
-              <h3>Flexible Spaces</h3>
-              <p>Ground and first floor units available in various sizes — from compact retail shops to spacious offices.</p>
+            <div className="feature-item">
+              <p className="feature-item-num">06</p>
+              <div className="feature-accent-bar" style={{ background: 'var(--red)' }}></div>
+              <h3>Flexible Space Options</h3>
+              <p>Ground and first floor units in various sizes — from compact retail shops to spacious commercial offices.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section style={{ background: 'var(--primary)', padding: '5rem 0' }}>
+      <section className="cta-banner">
         <div className="container text-center">
-          <h2 style={{ color: '#fff', fontSize: '2.25rem', marginBottom: '1rem' }}>Ready to Join Sant Complex?</h2>
-          <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem' }}>
-            Contact us today to enquire about available spaces or to learn more about our community.
-          </p>
-          <div className="hero-cta">
-            <Link href="/spaces" className="btn btn-primary">View Available Spaces</Link>
-            <Link href="/contact" className="btn btn-ghost">Get in Touch</Link>
+          <h2>Interested in a Space at Sant Complex?</h2>
+          <p>Contact us today to enquire about available units or to learn more about our commercial community.</p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/spaces" className="btn btn-primary btn-lg">View Available Spaces</Link>
+            <Link href="/contact" className="btn btn-outline-white btn-lg">Get in Touch</Link>
           </div>
         </div>
       </section>

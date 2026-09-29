@@ -50,25 +50,21 @@ export default async function AdminDashboard() {
       </div>
 
       <div className="card-grid" style={{ marginTop: '2rem' }}>
-        <Link href="/admin/businesses" className="feature-card" style={{ display: 'block', textDecoration: 'none' }}>
-          <div className="feature-icon">🏪</div>
-          <h3>Manage Businesses</h3>
-          <p>Add, edit, hide or remove businesses from the public directory.</p>
+        <Link href="/admin/businesses" className="feature-card" style={{ display: 'block', textDecoration: 'none', background: 'var(--surface)', padding: '24px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+          <h3 style={{ marginBottom: '8px' }}>Manage Businesses</h3>
+          <p style={{ color: 'var(--text-muted)' }}>Add, edit, hide or remove businesses from the public directory.</p>
         </Link>
-        <Link href="/admin/spaces" className="feature-card" style={{ display: 'block', textDecoration: 'none' }}>
-          <div className="feature-icon">🏢</div>
-          <h3>Manage Spaces</h3>
-          <p>Add available spaces and mark them as occupied when rented.</p>
+        <Link href="/admin/spaces" className="feature-card" style={{ display: 'block', textDecoration: 'none', background: 'var(--surface)', padding: '24px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+          <h3 style={{ marginBottom: '8px' }}>Manage Spaces</h3>
+          <p style={{ color: 'var(--text-muted)' }}>Add available spaces and mark them as occupied when rented.</p>
         </Link>
-        <Link href="/admin/enquiries" className="feature-card" style={{ display: 'block', textDecoration: 'none' }}>
-          <div className="feature-icon">✉️</div>
-          <h3>View Enquiries</h3>
-          <p>Read enquiries submitted through the contact form.</p>
+        <Link href="/admin/enquiries" className="feature-card" style={{ display: 'block', textDecoration: 'none', background: 'var(--surface)', padding: '24px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+          <h3 style={{ marginBottom: '8px' }}>View Enquiries</h3>
+          <p style={{ color: 'var(--text-muted)' }}>Read enquiries submitted through the contact form.</p>
         </Link>
-        <Link href="/admin/gallery" className="feature-card" style={{ display: 'block', textDecoration: 'none' }}>
-          <div className="feature-icon">📸</div>
-          <h3>Manage Gallery</h3>
-          <p>Add and remove photos from the gallery page.</p>
+        <Link href="/admin/gallery" className="feature-card" style={{ display: 'block', textDecoration: 'none', background: 'var(--surface)', padding: '24px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+          <h3 style={{ marginBottom: '8px' }}>Manage Gallery</h3>
+          <p style={{ color: 'var(--text-muted)' }}>Add and remove photos from the gallery page.</p>
         </Link>
       </div>
     </div>

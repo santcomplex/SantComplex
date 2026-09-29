@@ -1,11 +1,4 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
-}
+// use prisma-8
 
 model Business {
   id          String   @id @default(uuid())
@@ -17,8 +10,8 @@ model Business {
   description String?
   contactInfo String?
   isHidden    Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   temporal.createdAt()
+  updatedAt   temporal.updatedAt()
 }
 
 model Space {
@@ -30,8 +23,8 @@ model Space {
   status       SpaceStatus @default(AVAILABLE)
   basicFacilities String?
   photoUrl     String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    temporal.createdAt()
+  updatedAt    temporal.updatedAt()
 }
 
 enum SpaceStatus {
@@ -44,7 +37,7 @@ model GalleryImage {
   url         String
   category    String?  // e.g., Exterior, Interior, Parking
   description String?
-  createdAt   DateTime @default(now())
+  createdAt   temporal.createdAt()
 }
 
 model Enquiry {
@@ -54,5 +47,5 @@ model Enquiry {
   phone     String?
   message   String
   status    String   @default("NEW") // NEW, READ, ARCHIVED
-  createdAt DateTime @default(now())
+  createdAt temporal.createdAt()
 }

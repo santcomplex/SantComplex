@@ -2,9 +2,15 @@ import Link from 'next/link';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="admin-layout">
+    <div className="admin-wrap">
       <aside className="admin-sidebar">
-        <div className="admin-sidebar-logo">Sant<span>Complex</span></div>
+        <div className="admin-sidebar-header">
+          <Link href="/admin" className="admin-sidebar-logo" style={{ textDecoration: 'none' }}>
+            <img src="/logo.jpg" alt="Sant Complex Logo" />
+            <span>Sant Complex</span>
+          </Link>
+        </div>
+        
         <nav className="admin-nav">
           <div className="admin-nav-section">Overview</div>
           <Link href="/admin">Dashboard</Link>
@@ -17,11 +23,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="admin-nav-section">Communication</div>
           <Link href="/admin/enquiries">Enquiries</Link>
         </nav>
-        <div className="admin-back">
+
+        <div className="admin-footer-link">
           <Link href="/">← Back to Website</Link>
         </div>
       </aside>
-      <main className="admin-main">{children}</main>
+      
+      <main className="admin-main">
+        {children}
+      </main>
     </div>
   );
 }

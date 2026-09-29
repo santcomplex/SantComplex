@@ -73,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div>
                 <h4>Contact</h4>
                 <ul>
-                  <li><a href="tel:+919XXXXXXXXX">+91 9XXXXXXXXX</a></li>
+                  <li><a href="tel:+919XXXXXXXXX">+91 98140-64001</a></li>
                   <li><a href="https://wa.me/919XXXXXXXXX" target="_blank">WhatsApp</a></li>
                   <li><a href="mailto:santstore@gmail.com">santstore@gmail.com</a></li>
                   <li><span style={{ color: 'rgba(255,255,255,.5)', fontSize: '14px' }}>Goraya Road, Jandiala Manjki</span></li>

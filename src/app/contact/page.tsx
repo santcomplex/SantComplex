@@ -79,7 +79,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="contact-label">Phone</div>
-                <div className="contact-value"><a href="tel:+919XXXXXXXXX">+91 9XXXXXXXXX</a></div>
+                <div className="contact-value"><a href="tel:+919XXXXXXXXX">+91 98140-64001</a></div>
               </div>
             </div>
             

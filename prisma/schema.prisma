@@ -1,0 +1,58 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Business {
+  id          String   @id @default(uuid())
+  name        String
+  category    String
+  floor       String
+  unit        String?
+  logoUrl     String?
+  description String?
+  contactInfo String?
+  isHidden    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Space {
+  id           String   @id @default(uuid())
+  unitNumber   String   @unique
+  floor        String
+  area         String?
+  monthlyRent  Float?
+  status       SpaceStatus @default(AVAILABLE)
+  basicFacilities String?
+  photoUrl     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum SpaceStatus {
+  AVAILABLE
+  OCCUPIED
+}
+
+model GalleryImage {
+  id          String   @id @default(uuid())
+  url         String
+  category    String?  // e.g., Exterior, Interior, Parking
+  description String?
+  createdAt   DateTime @default(now())
+}
+
+model Enquiry {
+  id        String   @id @default(uuid())
+  name      String
+  email     String?
+  phone     String?
+  message   String
+  status    String   @default("NEW") // NEW, READ, ARCHIVED
+  createdAt DateTime @default(now())
+}

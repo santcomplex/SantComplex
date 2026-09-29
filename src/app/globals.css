@@ -139,7 +139,7 @@ h1,h2,h3,h4,h5 { font-weight: 700; line-height: 1.2; color: var(--text); }
 .hero p { font-size: 17px; color: rgba(255,255,255,.8); max-width: 480px; margin-bottom: 36px; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-logo-side { position: relative; z-index: 1; }
-.hero-logo-side img { width: 180px; height: 180px; object-fit: contain; opacity: .9; }
+.hero-logo-side img { width: 360px; height: 360px; object-fit: contain; opacity: .9; }
 
 .hero-strip {
   background: var(--red);

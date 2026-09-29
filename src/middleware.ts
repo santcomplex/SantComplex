@@ -5,26 +5,11 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl;
   
   if (url.pathname.startsWith('/admin')) {
-    const basicAuth = req.headers.get('authorization');
+    const token = req.cookies.get('admin_token');
     
-    const USERNAME = 'admin';
-    const PASSWORD = process.env.ADMIN_PASSWORD || 'santcomplex2026'; 
-    
-    if (basicAuth) {
-      const authValue = basicAuth.split(' ')[1];
-      const [user, pwd] = atob(authValue).split(':');
-      
-      if (user === USERNAME && pwd === PASSWORD) {
-        return NextResponse.next();
-      }
+    if (!token || token.value !== 'authenticated') {
+      return NextResponse.redirect(new URL('/login', req.url));
     }
-    
-    return new NextResponse('Authentication Required', {
-      status: 401,
-      headers: {
-        'WWW-Authenticate': 'Basic realm="Sant Complex Admin Panel"',
-      },
-    });
   }
   
   return NextResponse.next();

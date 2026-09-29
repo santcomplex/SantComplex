@@ -3,9 +3,7 @@ import { db } from '@/lib/db';
 
 export async function GET() {
   try {
-    const businesses = await db.orm.public.Business.all({
-      orderBy: [{ name: 'asc' }],
-    });
+    const businesses = await db.orm.public.Business.orderBy((b) => b.name.asc()).all();
     return NextResponse.json(businesses);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch businesses' }, { status: 500 });

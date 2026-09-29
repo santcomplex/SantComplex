@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 
 export async function GET() {
   try {
-    const images = await db.orm.public.GalleryImage.all({ orderBy: [{ createdAt: 'desc' }] });
+    const images = await db.orm.public.GalleryImage.orderBy((i) => i.createdAt.desc()).all();
     return NextResponse.json(images);
   } catch {
     return NextResponse.json({ error: 'Failed to fetch images' }, { status: 500 });

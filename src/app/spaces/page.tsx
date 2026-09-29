@@ -15,10 +15,10 @@ export default async function SpacesPage() {
   }[] = [];
 
   try {
-    spaces = await db.orm.public.Space.all({
-      where: { status: 'AVAILABLE' },
-      orderBy: [{ floor: 'asc' }, { unitNumber: 'asc' }],
-    }) as typeof spaces;
+    spaces = await db.orm.public.Space
+      .where({ status: 'AVAILABLE' })
+      .orderBy([(s) => s.floor.asc(), (s) => s.unitNumber.asc()])
+      .all() as typeof spaces;
   } catch {
     spaces = [];
   }

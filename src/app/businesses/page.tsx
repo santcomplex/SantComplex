@@ -15,10 +15,10 @@ export default async function BusinessesPage() {
   let categories: string[] = [];
 
   try {
-    businesses = await db.orm.public.Business.all({
-      where: { isHidden: false },
-      orderBy: [{ name: 'asc' }],
-    }) as typeof businesses;
+    businesses = await db.orm.public.Business
+      .where({ isHidden: false })
+      .orderBy((b) => b.name.asc())
+      .all() as typeof businesses;
     categories = Array.from(new Set(businesses.map(b => b.category)));
   } catch {
     businesses = [];

@@ -11,7 +11,7 @@ export default async function GalleryPage() {
   let categories: string[] = [];
 
   try {
-    images = await db.orm.public.GalleryImage.all({ orderBy: [{ createdAt: 'desc' }] }) as typeof images;
+    images = await db.orm.public.GalleryImage.orderBy((i) => i.createdAt.desc()).all() as typeof images;
     categories = Array.from(new Set(images.map((i) => i.category).filter(Boolean))) as string[];
   } catch {
     images = [];

@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 
 export async function GET() {
   try {
-    const spaces = await db.orm.public.Space.all({ orderBy: [{ floor: 'asc' }, { unitNumber: 'asc' }] });
+    const spaces = await db.orm.public.Space.orderBy([(s) => s.floor.asc(), (s) => s.unitNumber.asc()]).all();
     return NextResponse.json(spaces);
   } catch {
     return NextResponse.json({ error: 'Failed to fetch spaces' }, { status: 500 });

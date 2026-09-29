@@ -99,7 +99,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="contact-label">Email</div>
-                <div className="contact-value"><a href="mailto:info@santcomplex.com">info@santcomplex.com</a></div>
+                <div className="contact-value"><a href="mailto:santstore@gmail.com">santstore@gmail.com</a></div>
               </div>
             </div>
             

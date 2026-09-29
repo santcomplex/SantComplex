@@ -7,7 +7,7 @@ export default async function AdminEnquiries() {
   }[] = [];
 
   try {
-    enquiries = await db.orm.public.Enquiry.all({ orderBy: [{ createdAt: 'desc' }] }) as typeof enquiries;
+    enquiries = await db.orm.public.Enquiry.orderBy((e) => e.createdAt.desc()).all() as typeof enquiries;
   } catch {
     enquiries = [];
   }

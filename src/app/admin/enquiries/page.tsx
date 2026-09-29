@@ -21,7 +21,7 @@ export default async function AdminEnquiries() {
 
       {enquiries.length === 0 ? (
         <div className="empty-state">
-          <div className="icon">✉️</div>
+          <svg className="empty-state-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           <h3>No enquiries yet</h3>
           <p>Enquiries submitted via the contact form will appear here.</p>
         </div>
@@ -34,8 +34,8 @@ export default async function AdminEnquiries() {
                   <div>
                     <h3 className="card-title" style={{ marginBottom: '.25rem' }}>{e.name}</h3>
                     <div className="card-meta">
-                      {e.phone && <span>📞 {e.phone}</span>}
-                      {e.email && <span>✉️ {e.email}</span>}
+                      {e.phone && <span>Phone: {e.phone}</span>}
+                      {e.email && <span>Email: {e.email}</span>}
                       <span style={{ fontSize: '.8rem', color: 'var(--text-muted)' }}>
                         {new Date(e.createdAt as string).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                       </span>
@@ -49,9 +49,9 @@ export default async function AdminEnquiries() {
                 {e.phone && (
                   <div style={{ marginTop: '1rem', display: 'flex', gap: '.75rem' }}>
                     <a href={`https://wa.me/${e.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-success">
-                      💬 WhatsApp
+                      WhatsApp
                     </a>
-                    <a href={`tel:${e.phone}`} className="btn btn-sm btn-outline">📞 Call</a>
+                    <a href={`tel:${e.phone}`} className="btn btn-sm btn-outline">Call</a>
                   </div>
                 )}
               </div>

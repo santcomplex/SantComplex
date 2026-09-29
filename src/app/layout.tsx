@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ConditionalPublicUI } from '@/components/ConditionalPublicUI';
 
 export const metadata: Metadata = {
   title: { default: 'Sant Complex — Goraya Road, Jandiala Manjki', template: '%s | Sant Complex' },
@@ -13,8 +14,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        {/* Navbar */}
-        <nav className="navbar">
+        <ConditionalPublicUI>
+          {/* Navbar */}
+          <nav className="navbar">
           <div className="container navbar-inner">
             <Link href="/" className="logo-wrap">
               <Image src="/logo.jpg" alt="Sant Complex Logo" width={40} height={40} className="logo-img" />
@@ -35,9 +37,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </ul>
           </div>
         </nav>
+        </ConditionalPublicUI>
 
         {children}
 
+        <ConditionalPublicUI>
         {/* Footer */}
         <footer className="footer">
           <div className="container">
@@ -94,6 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             Call Us
           </a>
         </div>
+        </ConditionalPublicUI>
       </body>
     </html>
   );

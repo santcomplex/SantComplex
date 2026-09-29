@@ -39,7 +39,7 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="hero-logo-side">
-            <Image src="/logo.jpg" alt="Sant Complex" width={180} height={180} priority style={{ borderRadius: '12px' }} />
+            <Image src="/sant-complex-logo.jpg" alt="Sant Complex" width={180} height={180} priority style={{ borderRadius: '12px' }} />
           </div>
         </div>
       </section>

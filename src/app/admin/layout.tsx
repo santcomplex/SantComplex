@@ -6,7 +6,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="admin-sidebar">
         <div className="admin-sidebar-header">
           <Link href="/admin" className="admin-sidebar-logo" style={{ textDecoration: 'none' }}>
-            <img src="/logo.jpg" alt="Sant Complex Logo" />
+            <img src="/sant-complex-logo.jpg" alt="Sant Complex Logo" />
             <span>Sant Complex</span>
           </Link>
         </div>

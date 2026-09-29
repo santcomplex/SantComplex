@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <nav className="navbar">
           <div className="container navbar-inner">
             <Link href="/" className="logo-wrap">
-              <Image src="/logo.jpg" alt="Sant Complex Logo" width={40} height={40} className="logo-img" />
+              <Image src="/sant-complex-logo.jpg" alt="Sant Complex Logo" width={40} height={40} className="logo-img" />
               <div className="logo-text">
                 <strong>Sant Complex</strong>
                 <small>Goraya Road, Jandiala Manjki</small>
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="footer-grid">
               <div className="footer-brand">
                 <div className="footer-logo-wrap">
-                  <Image src="/logo.jpg" alt="Sant Complex" width={36} height={36} className="footer-logo-img" />
+                  <Image src="/sant-complex-logo.jpg" alt="Sant Complex" width={36} height={36} className="footer-logo-img" />
                   <span className="footer-logo-text">Sant Complex</span>
                 </div>
                 <p>A thriving commercial hub on Goraya Road, Jandiala Manjki — home to established businesses and quality commercial spaces.</p>

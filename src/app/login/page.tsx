@@ -23,6 +23,17 @@ export default function LoginPage() {
             </div>
           )}
           
+          <div className="form-group" style={{ marginBottom: '16px' }}>
+            <label className="form-label">Username</label>
+            <input 
+              type="text" 
+              name="username" 
+              className="form-input" 
+              required 
+              placeholder="Enter admin username"
+            />
+          </div>
+
           <div className="form-group" style={{ marginBottom: '24px' }}>
             <label className="form-label">Password</label>
             <input 
@@ -30,7 +41,7 @@ export default function LoginPage() {
               name="password" 
               className="form-input" 
               required 
-              placeholder="Enter your admin password"
+              placeholder="Enter admin password"
             />
           </div>
           

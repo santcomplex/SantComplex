@@ -4,10 +4,13 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export async function loginAdmin(prevState: any, formData: FormData) {
+  const username = formData.get('username');
   const password = formData.get('password');
+  
+  const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
   const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'santcomplex2026';
   
-  if (password === ADMIN_PASSWORD) {
+  if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
     const cookieStore = await cookies();
     cookieStore.set('admin_token', 'authenticated', {
       httpOnly: true,
@@ -19,6 +22,6 @@ export async function loginAdmin(prevState: any, formData: FormData) {
     
     redirect('/admin');
   } else {
-    return { error: 'Invalid password. Please try again.' };
+    return { error: 'Invalid username or password. Please try again.' };
   }
 }

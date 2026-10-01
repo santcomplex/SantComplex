@@ -19,7 +19,8 @@ export async function POST(req: NextRequest) {
       description: data.description || null,
     });
     return NextResponse.json(image, { status: 201 });
-  } catch {
+  } catch (error: any) {
+    console.error('Gallery API POST Error:', error);
     return NextResponse.json({ error: 'Failed to add image' }, { status: 500 });
   }
 }

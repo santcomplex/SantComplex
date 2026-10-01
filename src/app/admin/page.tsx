@@ -3,14 +3,20 @@ import { db } from '@/lib/db';
 
 async function getStats() {
   try {
-    const [totalBiz, hiddenBiz, availSpaces, occupiedSpaces, enquiries] = await Promise.all([
-      db.orm.public.Business.count({}),
-      db.orm.public.Business.count({ where: { isHidden: true } }),
-      db.orm.public.Space.count({ where: { status: 'AVAILABLE' } }),
-      db.orm.public.Space.count({ where: { status: 'OCCUPIED' } }),
-      db.orm.public.Enquiry.count({ where: { status: 'NEW' } }),
+    const [totalBizRes, hiddenBizRes, availRes, occupiedRes, enquiriesRes] = await Promise.all([
+      db.orm.public.Business.aggregate((a) => ({ count: a.count() })),
+      db.orm.public.Business.where({ isHidden: true }).aggregate((a) => ({ count: a.count() })),
+      db.orm.public.Space.where((s) => s.status.eq('AVAILABLE')).aggregate((a) => ({ count: a.count() })),
+      db.orm.public.Space.where((s) => s.status.eq('OCCUPIED')).aggregate((a) => ({ count: a.count() })),
+      db.orm.public.Enquiry.where((e) => e.status.eq('NEW')).aggregate((a) => ({ count: a.count() })),
     ]);
-    return { totalBiz, hiddenBiz, availSpaces, occupiedSpaces, enquiries };
+    return {
+      totalBiz: Number(totalBizRes.count),
+      hiddenBiz: Number(hiddenBizRes.count),
+      availSpaces: Number(availRes.count),
+      occupiedSpaces: Number(occupiedRes.count),
+      enquiries: Number(enquiriesRes.count),
+    };
   } catch {
     return { totalBiz: 0, hiddenBiz: 0, availSpaces: 0, occupiedSpaces: 0, enquiries: 0 };
   }

@@ -4,11 +4,11 @@ import { db } from '@/lib/db';
 
 async function getStats() {
   try {
-    const [businesses, spaces] = await Promise.all([
-      db.orm.public.Business.count({ where: { isHidden: false } }),
-      db.orm.public.Space.count({ where: { status: 'AVAILABLE' } }),
+    const [bizRes, spacesRes] = await Promise.all([
+      db.orm.public.Business.where({ isHidden: false }).aggregate((a) => ({ count: a.count() })),
+      db.orm.public.Space.where((s) => s.status.eq('AVAILABLE')).aggregate((a) => ({ count: a.count() })),
     ]);
-    return { businesses, availableSpaces: spaces };
+    return { businesses: Number(bizRes.count), availableSpaces: Number(spacesRes.count) };
   } catch {
     return { businesses: 0, availableSpaces: 0 };
   }

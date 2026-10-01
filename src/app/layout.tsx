@@ -3,6 +3,7 @@ import './globals.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ConditionalPublicUI } from '@/components/ConditionalPublicUI';
+import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
   title: { default: 'Sant Complex — Goraya Road, Jandiala Manjki', template: '%s | Sant Complex' },
@@ -16,27 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ConditionalPublicUI>
           {/* Navbar */}
-          <nav className="navbar">
-          <div className="container navbar-inner">
-            <Link href="/" className="logo-wrap">
-              <Image src="/sant-complex-logo.jpg" alt="Sant Complex Logo" width={40} height={40} className="logo-img" />
-              <div className="logo-text">
-                <strong>Sant Complex</strong>
-                <small>Goraya Road, Jandiala Manjki</small>
-              </div>
-            </Link>
-            <ul className="nav-links">
-              <li><Link href="/businesses">Businesses</Link></li>
-              <li><Link href="/spaces">Available Spaces</Link></li>
-              <li><Link href="/gallery">Gallery</Link></li>
-              <li><Link href="/about">About</Link></li>
-              <li><Link href="/location">Location</Link></li>
-              <li className="nav-cta">
-                <Link href="/contact" className="btn btn-primary btn-sm">Contact Us</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
+          <Navbar />
         </ConditionalPublicUI>
 
         {children}

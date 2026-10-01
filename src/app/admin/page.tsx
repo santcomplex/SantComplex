@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { db } from '@/lib/db';
+export const dynamic = 'force-dynamic';
 
 async function getStats() {
   try {

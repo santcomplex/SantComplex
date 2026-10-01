@@ -62,7 +62,7 @@ export default function AdminBusinesses() {
       {msg && <div className="alert alert-success">{msg}</div>}
 
       {loading ? <p>Loading…</p> : (
-        <div style={{ background: 'var(--surface)', borderRadius: 'var(--radius)', border: '1px solid var(--border)', overflow: 'hidden' }}>
+        <div style={{ background: 'var(--surface)', borderRadius: 'var(--radius)', border: '1px solid var(--border)', overflowX: 'auto' }}>
           <table className="data-table">
             <thead>
               <tr>

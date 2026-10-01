@@ -20,7 +20,7 @@ export default function AboutPage() {
 
       <section className="section">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+          <div className="grid-about">
             <div>
               <p className="section-eyebrow">The Complex</p>
               <div className="accent-line"></div>

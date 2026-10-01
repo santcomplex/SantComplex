@@ -409,8 +409,13 @@ h1,h2,h3,h4,h5 { font-weight: 700; line-height: 1.2; color: var(--text); }
 .accent-line-blue { background: var(--blue); }
 .accent-line-gold { background: var(--gold); }
 
+/* ---- Content Grids ---- */
+.grid-about { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.grid-location { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: start; }
+
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
+  .grid-about, .grid-location { grid-template-columns: 1fr; gap: 2rem; }
   .nav-links { 
     display: none; position: absolute; top: 64px; left: 0; right: 0; 
     background: var(--surface); flex-direction: column; padding: 16px; 

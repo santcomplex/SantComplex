@@ -20,7 +20,7 @@ export default function LocationPage() {
 
       <section className="section">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '4rem', alignItems: 'start' }}>
+          <div className="grid-location">
             <div>
               <h2 style={{ marginBottom: '32px', fontFamily: "'Playfair Display', serif" }}>How to Find Us</h2>
 

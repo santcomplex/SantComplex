@@ -69,7 +69,7 @@ export default function ContactPage() {
       </div>
 
       <section className="section">
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '4rem', alignItems: 'start' }}>
+        <div className="container grid-location">
           <div className="contact-card">
             <h3>Contact Information</h3>
             

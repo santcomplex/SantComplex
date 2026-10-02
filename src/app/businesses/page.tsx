@@ -17,10 +17,21 @@ export default async function BusinessesPage() {
   let categories: string[] = [];
 
   try {
-    businesses = await db.orm.public.Business
+    const rawBusinesses = await db.orm.public.Business
       .where({ isHidden: false })
       .orderBy((b) => b.name.asc())
-      .all() as typeof businesses;
+      .all();
+    
+    businesses = rawBusinesses.map((b) => ({
+      id: b.id,
+      name: b.name,
+      category: b.category,
+      floor: b.floor,
+      unit: b.unit,
+      description: b.description,
+      contactInfo: b.contactInfo
+    }));
+
     categories = Array.from(new Set(businesses.map(b => b.category)));
   } catch {
     businesses = [];

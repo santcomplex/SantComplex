@@ -66,35 +66,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <section className="section" style={{ background: 'var(--surface)', borderTop: '1px solid var(--border)' }}>
-        <div className="container">
-          <div className="section-header center">
-            <p className="section-eyebrow">Sectors</p>
-            <div className="accent-line" style={{ margin: '0 auto 20px' }}></div>
-            <h2>Businesses We Host</h2>
-            <p>Sant Complex accommodates a wide variety of commercial operations, creating a diverse and thriving marketplace.</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '16px' }}>
-            {[
-              'Retail & Shopping',
-              'Personal Care & Salons',
-              'Food & Beverages',
-              'Healthcare & Pharmacies',
-              'Electronics & Technology',
-              'Financial Services',
-              'Professional Consulting',
-              'Education & Training',
-              'Repair & Maintenance',
-            ].map((type) => (
-              <div key={type} style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', padding: '24px', textAlign: 'center' }}>
-                <div style={{ width: '12px', height: '12px', background: 'var(--red)', borderRadius: '50%', margin: '0 auto 16px' }}></div>
-                <span style={{ fontWeight: 600, color: 'var(--text)', fontSize: '16px' }}>{type}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: { default: 'Sant Complex — Goraya Road, Jandiala Manjki', template: '%s | Sant Complex' },
   description: 'Sant Complex is a premier commercial hub on Goraya Road, Jandiala Manjki. Find established businesses and available commercial spaces for rent.',
   keywords: ['Sant Complex', 'Jandiala Manjki', 'Goraya Road', 'commercial space', 'shop for rent', 'Punjab'],
+  icons: {
+    icon: '/sant-complex-favicon.svg',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

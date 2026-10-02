@@ -1,5 +1,24 @@
 import { db } from '@/lib/db';
+import { revalidatePath } from 'next/cache';
 export const dynamic = 'force-dynamic';
+
+async function markAsRead(formData: FormData) {
+  'use server';
+  const id = formData.get('id') as string;
+  if (id) {
+    await db.orm.public.Enquiry.where({ id }).update({ status: 'READ' });
+    revalidatePath('/admin/enquiries');
+  }
+}
+
+async function deleteEnquiry(formData: FormData) {
+  'use server';
+  const id = formData.get('id') as string;
+  if (id) {
+    await db.orm.public.Enquiry.where({ id }).delete();
+    revalidatePath('/admin/enquiries');
+  }
+}
 
 export default async function AdminEnquiries() {
   let enquiries: {
@@ -38,7 +57,7 @@ export default async function AdminEnquiries() {
                       {e.phone && <span>Phone: {e.phone}</span>}
                       {e.email && <span>Email: {e.email}</span>}
                       <span style={{ fontSize: '.8rem', color: 'var(--text-muted)' }}>
-                        {new Date(e.createdAt as string).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                        {new Date(String(e.createdAt)).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                       </span>
                     </div>
                   </div>
@@ -47,14 +66,29 @@ export default async function AdminEnquiries() {
                 <p style={{ color: 'var(--text)', lineHeight: 1.7, background: 'var(--bg)', padding: '1rem', borderRadius: 'var(--radius-sm)' }}>
                   {e.message}
                 </p>
-                {e.phone && (
-                  <div style={{ marginTop: '1rem', display: 'flex', gap: '.75rem' }}>
-                    <a href={`https://wa.me/${e.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-success">
-                      WhatsApp
-                    </a>
-                    <a href={`tel:${e.phone}`} className="btn btn-sm btn-outline">Call</a>
-                  </div>
-                )}
+                <div style={{ marginTop: '1rem', display: 'flex', gap: '.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                  {e.phone && (
+                    <>
+                      <a href={`https://wa.me/${e.phone.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-success">
+                        WhatsApp
+                      </a>
+                      <a href={`tel:${e.phone}`} className="btn btn-sm btn-outline">Call</a>
+                    </>
+                  )}
+                  <div style={{ flex: 1 }}></div>
+                  {e.status === 'NEW' && (
+                    <form action={markAsRead}>
+                      <input type="hidden" name="id" value={e.id} />
+                      <button type="submit" className="btn btn-sm btn-outline">Mark as Read</button>
+                    </form>
+                  )}
+                  <form action={deleteEnquiry}>
+                    <input type="hidden" name="id" value={e.id} />
+                    <button type="submit" className="btn btn-sm btn-outline" style={{ borderColor: 'var(--red)', color: 'var(--red)' }}>
+                      Delete
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
           ))}

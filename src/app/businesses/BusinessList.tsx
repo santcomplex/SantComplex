@@ -58,7 +58,7 @@ export default function BusinessList({ businesses, categories }: { businesses: B
           {filtered.map((b) => (
             <div key={b.id} className="card">
               {b.logoUrl ? (
-                <div style={{ width: '100%', height: '160px', overflow: 'hidden', borderRadius: 'var(--radius) var(--radius) 0 0', background: 'var(--surface)' }}>
+                <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', borderRadius: 'var(--radius) var(--radius) 0 0', background: 'var(--surface)' }}>
                   <img
                     src={b.logoUrl}
                     alt={`${b.name} logo`}
@@ -66,7 +66,7 @@ export default function BusinessList({ businesses, categories }: { businesses: B
                   />
                 </div>
               ) : (
-                <div style={{ width: '100%', height: '160px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface)', borderRadius: 'var(--radius) var(--radius) 0 0', fontSize: '3rem', fontWeight: 700, color: 'var(--text-muted)' }}>
+                <div style={{ width: '100%', aspectRatio: '4 / 3', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--surface)', borderRadius: 'var(--radius) var(--radius) 0 0', fontSize: '3rem', fontWeight: 700, color: 'var(--text-muted)' }}>
                   {b.name.charAt(0).toUpperCase()}
                 </div>
               )}

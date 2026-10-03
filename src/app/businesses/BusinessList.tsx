@@ -54,7 +54,7 @@ export default function BusinessList({ businesses, categories }: { businesses: B
           <p>We couldn't find any businesses in this category.</p>
         </div>
       ) : (
-        <div className="card-grid-2">
+        <div className="card-grid-3">
           {filtered.map((b) => (
             <div key={b.id} className="card">
               {b.logoUrl ? (

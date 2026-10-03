@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
 type Business = {
   id: string; name: string; category: string; floor: string;
@@ -17,6 +17,36 @@ export default function AdminBusinesses() {
   const [form, setForm] = useState(EMPTY);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState('');
+  
+  const [uploading, setUploading] = useState(false);
+  const [dragOver, setDragOver] = useState(false);
+  const [inputMode, setInputMode] = useState<'upload' | 'url'>('url');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  async function handleFileUpload(file: File) {
+    if (!file.type.startsWith('image/')) {
+      setMsg('Only image files are allowed.');
+      return;
+    }
+    setUploading(true);
+    const fd = new FormData();
+    fd.append('file', file);
+    try {
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      if (res.ok) {
+        const { url } = await res.json();
+        setForm(f => ({ ...f, logoUrl: url }));
+        setMsg('Photo uploaded successfully!');
+      } else {
+        const err = await res.json();
+        setMsg(err.error || 'Upload failed.');
+      }
+    } catch (err) {
+      setMsg('Upload failed.');
+    } finally {
+      setUploading(false);
+    }
+  }
 
   async function load() {
     setLoading(true);
@@ -139,7 +169,81 @@ export default function AdminBusinesses() {
             </div>
             <div className="form-group">
               <label className="form-label">Logo / Photo URL</label>
-              <input className="form-input" value={form.logoUrl || ''} onChange={(e) => setForm({ ...form, logoUrl: e.target.value })} placeholder="https://…" />
+              
+              <div style={{ display: 'flex', gap: '.5rem', marginBottom: '.5rem' }}>
+                <button
+                  type="button"
+                  onClick={() => setInputMode('upload')}
+                  style={{
+                    padding: '.4rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)',
+                    background: inputMode === 'upload' ? 'var(--primary)' : 'transparent',
+                    color: inputMode === 'upload' ? '#fff' : 'var(--text)',
+                    cursor: 'pointer', fontSize: '.875rem', fontWeight: 600, transition: 'all .2s',
+                  }}
+                >
+                  Upload File
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setInputMode('url')}
+                  style={{
+                    padding: '.4rem 1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)',
+                    background: inputMode === 'url' ? 'var(--primary)' : 'transparent',
+                    color: inputMode === 'url' ? '#fff' : 'var(--text)',
+                    cursor: 'pointer', fontSize: '.875rem', fontWeight: 600, transition: 'all .2s',
+                  }}
+                >
+                  Image URL
+                </button>
+              </div>
+
+              {/* Upload section */}
+              <div style={{ display: inputMode === 'upload' ? 'block' : 'none' }}>
+                <div
+                  onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+                  onDragLeave={() => setDragOver(false)}
+                  onDrop={async (e) => {
+                    e.preventDefault();
+                    setDragOver(false);
+                    const file = e.dataTransfer.files?.[0];
+                    if (file) await handleFileUpload(file);
+                  }}
+                  onClick={() => fileInputRef.current?.click()}
+                  style={{
+                    border: `2px dashed ${dragOver ? 'var(--primary)' : 'var(--border)'}`,
+                    borderRadius: 'var(--radius)',
+                    padding: '1.5rem 1rem',
+                    textAlign: 'center',
+                    cursor: 'pointer',
+                    background: dragOver ? 'color-mix(in srgb, var(--primary) 8%, transparent)' : 'var(--bg)',
+                    transition: 'all .2s',
+                  }}
+                >
+                  {form.logoUrl && inputMode === 'upload' ? (
+                    <div>
+                      <img src={form.logoUrl} alt="Preview" style={{ maxHeight: '100px', borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
+                      <div style={{ marginTop: '.5rem', fontSize: '.85rem', color: 'var(--text-muted)' }}>
+                        {uploading ? 'Uploading…' : 'Uploaded — click to replace'}
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div style={{ fontWeight: 600, marginBottom: '.25rem' }}>{uploading ? 'Uploading…' : 'Drop image here or click to browse'}</div>
+                      <div style={{ fontSize: '.8rem', color: 'var(--text-muted)' }}>PNG, JPG, GIF, WebP — max 10 MB</div>
+                    </>
+                  )}
+                </div>
+                <input ref={fileInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={async (e) => { const file = e.target.files?.[0]; if (file) await handleFileUpload(file); }} />
+              </div>
+
+              {/* URL section */}
+              <div style={{ display: inputMode === 'url' ? 'block' : 'none' }}>
+                <input className="form-input" value={form.logoUrl || ''} onChange={(e) => setForm({ ...form, logoUrl: e.target.value })} placeholder="https://…" />
+                {form.logoUrl && inputMode === 'url' && (
+                  <img src={form.logoUrl} alt="Preview" onError={(e) => e.currentTarget.style.display = 'none'} onLoad={(e) => e.currentTarget.style.display = 'block'}
+                    style={{ marginTop: '.5rem', maxHeight: '100px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' }} />
+                )}
+              </div>
             </div>
             <div className="form-group">
               <label className="form-label">Description</label>

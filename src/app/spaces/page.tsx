@@ -45,7 +45,7 @@ export default async function SpacesPage() {
               <Link href="/contact" className="btn btn-primary" style={{ marginTop: '24px' }}>Contact Leasing Office</Link>
             </div>
           ) : (
-            <div className="card-grid-2">
+            <div className="card-grid-3">
               {spaces.map((space) => (
                 <div key={space.id} className="card">
                   <div className="card-img" style={{ backgroundImage: space.photoUrl ? `url(${space.photoUrl})` : 'none' }}>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function BusinessesPage() {
   let businesses: {
     id: string; name: string; category: string; floor: string;
-    unit?: string | null; description?: string | null; contactInfo?: string | null;
+    unit?: string | null; logoUrl?: string | null; description?: string | null; contactInfo?: string | null;
   }[] = [];
   let categories: string[] = [];
 
@@ -28,6 +28,7 @@ export default async function BusinessesPage() {
       category: b.category,
       floor: b.floor,
       unit: b.unit,
+      logoUrl: b.logoUrl,
       description: b.description,
       contactInfo: b.contactInfo
     }));

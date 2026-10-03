@@ -33,7 +33,7 @@ export default async function AdminDashboard() {
         <p style={{ color: 'var(--text-muted)', fontSize: '.9rem' }}>Welcome to the Sant Complex Admin Panel</p>
       </div>
 
-      <div className="stat-card-grid">
+      <div className="stat-grid">
         <div className="stat-card">
           <div className="stat-card-value">{stats.totalBiz}</div>
           <div className="stat-card-label">Total Businesses</div>

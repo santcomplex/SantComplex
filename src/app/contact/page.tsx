@@ -79,7 +79,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="contact-label">Phone</div>
-                <div className="contact-value"><a href="tel:+919XXXXXXXXX">+91 98140-64001</a></div>
+                <div className="contact-value"><a href="tel:+919814064001">+91 98140-64001</a></div>
               </div>
             </div>
             
@@ -89,7 +89,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <div className="contact-label">WhatsApp</div>
-                <div className="contact-value"><a href="https://wa.me/919XXXXXXXXX" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a></div>
+                <div className="contact-value"><a href="https://wa.me/919814064001" target="_blank" rel="noopener noreferrer">Message us on WhatsApp</a></div>
               </div>
             </div>
             

@@ -56,7 +56,7 @@ export default async function SpacesPage() {
                     <div className="card-meta">
                       <span>Floor: {space.floor}</span>
                       <span>Unit: {space.unitNumber}</span>
-                      {space.area && <span>Area: {space.area}</span>}
+                      {space.area && <span>Area: {space.area} sqft</span>}
                     </div>
                     <h3 className="card-title">Unit {space.unitNumber} — {space.floor} Floor</h3>
                     

@@ -53,7 +53,7 @@ export default function LocationPage() {
                   Ample on-site parking space is available for both tenants and visitors.
                 </p>
                 <a
-                  href="https://maps.google.com/?q=Jandiala+Manjki,+Punjab,+India"
+                  href="https://maps.google.com/?q=31.163278,75.617891"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-outline"
@@ -66,7 +66,7 @@ export default function LocationPage() {
             <div>
               <div className="map-wrap">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13722.123456789!2d75.5!3d31.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sJandiala+Manjki%2C+Punjab!5e0!3m2!1sen!2sin!4v1234567890"
+                  src="https://maps.google.com/maps?q=31.163278,75.617891&z=17&output=embed"
                   width="100%"
                   height="600"
                   style={{ border: 0 }}

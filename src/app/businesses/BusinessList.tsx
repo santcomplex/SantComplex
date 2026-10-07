@@ -84,9 +84,12 @@ export default function BusinessList({ businesses, categories }: { businesses: B
                   <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '.05em' }}>
                     Contact
                   </span>
-                  <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--blue)' }}>
+                  <a
+                    href={`tel:${b.contactInfo.replace(/[^\d+]/g, '')}`}
+                    style={{ fontSize: '14px', fontWeight: 600, color: 'var(--blue)', textDecoration: 'none' }}
+                  >
                     {b.contactInfo}
-                  </span>
+                  </a>
                 </div>
               )}
             </div>

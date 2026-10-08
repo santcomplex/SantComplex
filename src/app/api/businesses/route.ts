@@ -6,6 +6,7 @@ export async function GET() {
     const businesses = await db.orm.public.Business.orderBy((b) => b.name.asc()).all();
     return NextResponse.json(businesses);
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: 'Failed to fetch businesses' }, { status: 500 });
   }
 }
@@ -25,6 +26,7 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json(business, { status: 201 });
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: 'Failed to create business' }, { status: 500 });
   }
 }

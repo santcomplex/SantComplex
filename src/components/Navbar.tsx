@@ -3,11 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
 
   // Close menu when route changes
   const handleLinkClick = () => {
@@ -48,7 +46,6 @@ export default function Navbar() {
         <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
           <li><Link href="/businesses" onClick={handleLinkClick}>Businesses</Link></li>
           <li><Link href="/spaces" onClick={handleLinkClick}>Available Spaces</Link></li>
-          <li><Link href="/gallery" onClick={handleLinkClick}>Gallery</Link></li>
           <li><Link href="/about" onClick={handleLinkClick}>About</Link></li>
           <li><Link href="/location" onClick={handleLinkClick}>Location</Link></li>
           <li className="nav-cta">

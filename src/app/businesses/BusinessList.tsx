@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from "next/image"
 
 type Business = {
   id: string; name: string; category: string; floor: string;
@@ -51,7 +52,7 @@ export default function BusinessList({ businesses, categories }: { businesses: B
       {filtered.length === 0 ? (
         <div className="empty-state">
           <h3>No Businesses Found</h3>
-          <p>We couldn't find any businesses in this category.</p>
+          <p>We couldn&apos;t find any businesses in this category.</p>
         </div>
       ) : (
         <div className="card-grid-3">
@@ -59,7 +60,7 @@ export default function BusinessList({ businesses, categories }: { businesses: B
             <div key={b.id} className="card">
               {b.logoUrl ? (
                 <div style={{ width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', borderRadius: 'var(--radius) var(--radius) 0 0', background: 'var(--surface)' }}>
-                  <img
+                  <Image
                     src={b.logoUrl}
                     alt={`${b.name} logo`}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}

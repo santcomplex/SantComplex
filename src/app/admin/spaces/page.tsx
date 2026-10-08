@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
+import Image from 'next/image';
 
 type Space = {
   id: string; unitNumber: string; floor: string; area?: string | null;
@@ -40,19 +41,27 @@ export default function AdminSpaces() {
         setMsg(err.error || 'Upload failed.');
       }
     } catch (err) {
+      console.log(err)
       setMsg('Upload failed.');
     } finally {
       setUploading(false);
     }
   }
 
-  async function load() {
-    setLoading(true);
+  const load = useCallback(async () => {
     const res = await fetch('/api/spaces');
     setSpaces(await res.json());
     setLoading(false);
-  }
-  useEffect(() => { load(); }, []);
+  }, []);
+
+  useEffect(() => {
+    async function fetchInitial() {
+      const res = await fetch('/api/spaces');
+      setSpaces(await res.json());
+      setLoading(false);
+    }
+    fetchInitial();
+  }, []);
 
   function openAdd() { setEditing(null); setForm(EMPTY); setShowModal(true); setMsg(''); }
   function openEdit(s: Space) {
@@ -208,7 +217,7 @@ export default function AdminSpaces() {
                 >
                   {form.photoUrl && inputMode === 'upload' ? (
                     <div>
-                      <img src={form.photoUrl} alt="Preview" style={{ maxHeight: '100px', borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
+                      <Image src={form.photoUrl} alt="Preview" unoptimized width={200} height={100} style={{ maxHeight: '100px', width: 'auto', borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
                       <div style={{ marginTop: '.5rem', fontSize: '.85rem', color: 'var(--text-muted)' }}>
                         {uploading ? 'Uploading…' : 'Uploaded — click to replace'}
                       </div>
@@ -227,8 +236,7 @@ export default function AdminSpaces() {
               <div style={{ display: inputMode === 'url' ? 'block' : 'none' }}>
                 <input className="form-input" value={form.photoUrl || ''} onChange={(e) => setForm({ ...form, photoUrl: e.target.value })} placeholder="https://…" />
                 {form.photoUrl && inputMode === 'url' && (
-                  <img src={form.photoUrl} alt="Preview" onError={(e) => e.currentTarget.style.display = 'none'} onLoad={(e) => e.currentTarget.style.display = 'block'}
-                    style={{ marginTop: '.5rem', maxHeight: '100px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' }} />
+                  <Image src={form.photoUrl} alt="Preview" unoptimized width={200} height={100} style={{ marginTop: '.5rem', maxHeight: '100px', width: 'auto', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' }} />
                 )}
               </div>
             </div>

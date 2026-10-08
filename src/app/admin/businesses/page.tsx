@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
+import Image from 'next/image';
 
 type Business = {
   id: string; name: string; category: string; floor: string;
@@ -42,20 +43,27 @@ export default function AdminBusinesses() {
         setMsg(err.error || 'Upload failed.');
       }
     } catch (err) {
+      console.log(err)
       setMsg('Upload failed.');
     } finally {
       setUploading(false);
     }
   }
 
-  async function load() {
-    setLoading(true);
+  const load = useCallback(async () => {
     const res = await fetch('/api/businesses');
     setBusinesses(await res.json());
     setLoading(false);
-  }
+  }, []);
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => {
+    async function fetchInitial() {
+      const res = await fetch('/api/businesses');
+      setBusinesses(await res.json());
+      setLoading(false);
+    }
+    fetchInitial();
+  }, []);
 
   function openAdd() { setEditing(null); setForm(EMPTY); setShowModal(true); setMsg(''); }
   function openEdit(b: Business) { setEditing(b); setForm({ name: b.name, category: b.category, floor: b.floor, unit: b.unit || '', logoUrl: b.logoUrl || '', description: b.description || '', contactInfo: b.contactInfo || '' }); setShowModal(true); setMsg(''); }
@@ -105,7 +113,7 @@ export default function AdminBusinesses() {
             </thead>
             <tbody>
               {businesses.length === 0 && (
-                <tr><td colSpan={5} style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>No businesses yet. Click "Add Business" to get started.</td></tr>
+                <tr><td colSpan={5} style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>No businesses yet. Click &quot;Add Business`&quot;` to get started.</td></tr>
               )}
               {businesses.map((b) => (
                 <tr key={b.id}>
@@ -221,7 +229,7 @@ export default function AdminBusinesses() {
                 >
                   {form.logoUrl && inputMode === 'upload' ? (
                     <div>
-                      <img src={form.logoUrl} alt="Preview" style={{ maxHeight: '100px', borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
+                      <Image src={form.logoUrl} alt="Preview" unoptimized width={200} height={100} style={{ maxHeight: '100px', width: 'auto', borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} />
                       <div style={{ marginTop: '.5rem', fontSize: '.85rem', color: 'var(--text-muted)' }}>
                         {uploading ? 'Uploading…' : 'Uploaded — click to replace'}
                       </div>
@@ -240,7 +248,7 @@ export default function AdminBusinesses() {
               <div style={{ display: inputMode === 'url' ? 'block' : 'none' }}>
                 <input className="form-input" value={form.logoUrl || ''} onChange={(e) => setForm({ ...form, logoUrl: e.target.value })} placeholder="https://…" />
                 {form.logoUrl && inputMode === 'url' && (
-                  <img src={form.logoUrl} alt="Preview" onError={(e) => e.currentTarget.style.display = 'none'} onLoad={(e) => e.currentTarget.style.display = 'block'}
+                  <Image src={form.logoUrl} alt="Preview" onError={(e) => e.currentTarget.style.display = 'none'} onLoad={(e) => e.currentTarget.style.display = 'block'}
                     style={{ marginTop: '.5rem', maxHeight: '100px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' }} />
                 )}
               </div>

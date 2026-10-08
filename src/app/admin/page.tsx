@@ -69,10 +69,6 @@ export default async function AdminDashboard() {
           <h3 style={{ marginBottom: '8px' }}>View Enquiries</h3>
           <p style={{ color: 'var(--text-muted)' }}>Read enquiries submitted through the contact form.</p>
         </Link>
-        <Link href="/admin/gallery" className="feature-card" style={{ display: 'block', textDecoration: 'none', background: 'var(--surface)', padding: '24px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
-          <h3 style={{ marginBottom: '8px' }}>Manage Gallery</h3>
-          <p style={{ color: 'var(--text-muted)' }}>Add and remove photos from the gallery page.</p>
-        </Link>
       </div>
     </div>
   );
